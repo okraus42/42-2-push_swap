@@ -1,6 +1,12 @@
 # Prerequisites
 *.d
 
+# Hidden stuff
+.*
+
+# Do not ignore gitignore
+!.gitignore
+
 # Object files
 *.o
 *.ko
