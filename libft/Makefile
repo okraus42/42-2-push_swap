@@ -6,7 +6,7 @@
 #    By: okraus <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/14 13:43:18 by okraus            #+#    #+#              #
-#    Updated: 2023/03/04 15:33:29 by okraus           ###   ########.fr        #
+#    Updated: 2023/03/06 17:33:51 by okraus           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -90,7 +90,11 @@ SRC_LIB		=	ft_atoi \
 
 # Extra utility functions
 
-SRC_EX		=	ft_print_memory \
+SRC_EX		=	ft_dlstadd \
+				ft_dlstclear \
+				ft_dlstdelone \
+				ft_dlstnew \
+				ft_print_memory \
 				ft_print_memory_plus
 
 # Get next line functions

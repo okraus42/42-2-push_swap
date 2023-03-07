@@ -1,38 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_initialize_stack_a.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: okraus <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/04 15:43:08 by okraus            #+#    #+#             */
-/*   Updated: 2023/03/07 18:10:32 by okraus           ###   ########.fr       */
+/*   Created: 2023/03/06 16:54:29 by okraus            #+#    #+#             */
+/*   Updated: 2023/03/07 16:00:05 by okraus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
+#include "../header/push_swap.h"
 
-# define PUSH_SWAP_H
-
-// INCLUDES
-
-# include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <stdint.h>
-# include <stdarg.h>
-# include "../libft/header/libft.h"
-
-// DEFINITIONS
-// GET_NEXT_LINE definitions
-
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 64
-# endif
-
-// STRUCTURES
-// PUSH SWAP structure
-
+/*
 typedef struct s_ps_info
 {
 	int				a_size;
@@ -41,17 +21,21 @@ typedef struct s_ps_info
 	struct s_dlist	*b_start;
 }					t_ps_info;
 
-typedef struct s_ps_arr
+typedef struct s_dlist
+{
+	void			*content;
+	struct s_dlist	*prev;
+	struct s_dlist	*next;
+}					t_dlist;
+*/
+
+void	ft_initialize_stack_a(int *arr, t_ps_info *info)
 {
 	int	i;
-	int	j;
-	int	min;
-	int	tmp;
-}		t_ps_arr;
 
-// PROTOTYPES
-
-void	*ft_prefill_array(int ***array);
-void	ft_index_array(int **arr1, int **arr2, int size);
-
-#endif
+	i = 1;
+	while (i < info->a_size)
+	{
+		
+	}
+}
