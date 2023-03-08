@@ -6,7 +6,7 @@
 /*   By: okraus <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 13:43:29 by okraus            #+#    #+#             */
-/*   Updated: 2023/03/06 17:32:34 by okraus           ###   ########.fr       */
+/*   Updated: 2023/03/08 09:56:21 by okraus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,8 +118,13 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
 // double list
 void	ft_dlstadd(t_dlist **dlst, t_dlist *new);
-void	ft_dlstadd(t_dlist **dlst, t_dlist *new);
+void	ft_dlstclear(t_dlist **dlst, void (*del)(void *));
+void	ft_dlstclear2(t_dlist **dlst);
 void	ft_dlstdelone(t_dlist *lst, void (*del)(void *));
+void	ft_dlstdelone2(t_dlist *dlst);
+void	ft_dlstmovein(t_dlist **dlst_dst, t_dlist *dlst_src);
+void	ft_dlstmoveout(t_dlist **dlst_src);
+void	ft_dlstmoveone(t_dlist **dlst_dst, t_dlist **dlst_src);
 t_dlist	*ft_dlstnew(void *content);
 
 // memory
@@ -138,7 +143,8 @@ char	*ft_strjoin_gnl(char *s1, char *s2);
 
 // FT_PRINTF prototypes
 
-int		ft_printf(int fd, const char *s, ...);
+int		ft_printf_fd(int fd, const char *s, ...);
+int		ft_printf(const char *s, ...);
 void	ft_putstuff(va_list arg, const char *s, int *q, t_output *t);
 void	ft_writestuff(int fd, const char *s, int *q);
 int		ft_pf_putchar_fd(char c, int fd, t_output *t);

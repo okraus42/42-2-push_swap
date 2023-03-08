@@ -6,7 +6,7 @@
 #    By: okraus <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/14 13:43:18 by okraus            #+#    #+#              #
-#    Updated: 2023/03/06 17:33:51 by okraus           ###   ########.fr        #
+#    Updated: 2023/03/08 11:18:29 by okraus           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -93,6 +93,7 @@ SRC_LIB		=	ft_atoi \
 SRC_EX		=	ft_dlstadd \
 				ft_dlstclear \
 				ft_dlstdelone \
+				ft_dlstmoveone \
 				ft_dlstnew \
 				ft_print_memory \
 				ft_print_memory_plus

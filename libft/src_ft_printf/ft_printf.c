@@ -6,7 +6,7 @@
 /*   By: okraus <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 13:49:23 by okraus            #+#    #+#             */
-/*   Updated: 2023/03/02 15:21:49 by okraus           ###   ########.fr       */
+/*   Updated: 2023/03/08 08:33:15 by okraus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	ft_writestuff(int fd, const char *s, int *q)
 	q[0]++;
 }
 
-int	ft_printf(int fd, const char *s, ...)
+int	ft_printf_fd(int fd, const char *s, ...)
 {
 	static int		q[3];
 	va_list			arg;
@@ -73,7 +73,36 @@ int	ft_printf(int fd, const char *s, ...)
 			ft_putstuff(arg, s, q, t);
 		}
 		else
-			ft_writestuff(fd, s, q);
+			ft_writestuff(q[2], s, q);
+	}
+	va_end(arg);
+	free (t);
+	return (q[1]);
+}
+
+int	ft_printf(const char *s, ...)
+{
+	static int		q[3];
+	va_list			arg;
+	static t_output	*t;
+
+	t = (t_output *)malloc(sizeof(t_output));
+	if (!t)
+		return (-1);
+	va_start(arg, s);
+	q[0] = 0;
+	q[1] = 0;
+	q[2] = 1;
+	while (s[q[0]])
+	{	
+		if (s[q[0]] == '%')
+		{
+			ft_initialise_struct(t);
+			q[0]++;
+			ft_putstuff(arg, s, q, t);
+		}
+		else
+			ft_writestuff(1, s, q);
 	}
 	va_end(arg);
 	free (t);
