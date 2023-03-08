@@ -6,7 +6,7 @@
 /*   By: okraus <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 18:11:54 by okraus            #+#    #+#             */
-/*   Updated: 2023/03/08 14:54:11 by okraus           ###   ########.fr       */
+/*   Updated: 2023/03/08 17:40:37 by okraus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int	main(int argc, char *argv[])
 	t_ps_info	inf;
 	t_ps_info	*info;
 
+	tmp2 = NULL;
 	if (argc < 3)
 	{
 		return (0);
@@ -34,10 +35,10 @@ int	main(int argc, char *argv[])
 	else
 	{
 		arr_i = malloc (sizeof(int) * argc - 1);
-		arr_o = malloc (sizeof(int) * argc - 1);
+		arr_o = ft_calloc (sizeof(int), argc - 1);
 	}
 	i = 1;
-	while (i < argc - 1)
+	while (i < argc)
 	{
 		arr_o[i - 1] = ft_atoi(argv[i]);
 		i++;
@@ -50,41 +51,17 @@ int	main(int argc, char *argv[])
 	info->b_start = NULL;
 	i = 0;
 	j = 9;
+	a = NULL;
+	b = NULL;
 	a = &info->a_start;
 	b = &info->b_start;
 	test = &i;
 	
 	info->a_size = argc - 1;
 	ft_initialize_stack_a(arr_i, info);
-	/*
-	info->a_start = ft_dlstnew(&arr_i[0]);
-
-	i = 1;
-
-	while (i < argc - 1)
-	{
-		tmp = ft_dlstnew(&arr_i[i]);
-		tmp2 = *a;
-		info->a_size += 1;
-		info->a_start = tmp;
-		i++;
-	}*/
 	tmp = *a;
 	i = 0;
-	//ft_printf("%7CprintA:%3i, num %3i|%p|%p|%p%0C\n", i, *(int *)tmp->content, a, *a, **a);
-	while (i < 15)
-	{
-		ft_printf("%2CprintB:%3i, num %3i|%p|%p|%p\n%0C", i, *(int *)tmp->content, tmp->prev, tmp, tmp->next);
-		tmp = tmp->next;
-		i++;
-	}
-	while (i < 30)
-	{
-		ft_printf("%3CprintB:%3i, num %3i|%p|%p|%p\n%0C", i, *(int *)tmp->content, tmp->prev, tmp, tmp->next);
-		tmp = tmp->prev;
-		i++;
-	}
-	ft_ps_sa(a, info);
+	//ft_ps_sa(a, info);
 	tmp = info->a_start;
 	i = 0;
 	while (i < 12)
@@ -93,6 +70,7 @@ int	main(int argc, char *argv[])
 		tmp = tmp->next;
 		i++;
 	}
+	/*
 	tmp = info->a_start;
 	tmp2 = info->b_start;
 	ft_printf("%8CstackA:%3i, num %3i|%p|%p|%p%0C\n", i, *(int *)tmp->content, tmp->prev, tmp, tmp->next);
@@ -322,8 +300,13 @@ int	main(int argc, char *argv[])
 			tmp2 = tmp2->next;
 		i++;
 	}
-	ft_dlstclear2(a);
-	ft_dlstclear2(b);
+	*/
+	if (*a)
+		ft_dlstclear2(a);
+	if (*b)
+	{
+		ft_dlstclear2(b);
+	}
 	free(arr_i);
 	free(arr_o);
 
