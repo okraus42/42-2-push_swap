@@ -6,27 +6,43 @@
 /*   By: okraus <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 18:11:54 by okraus            #+#    #+#             */
-/*   Updated: 2023/03/08 11:16:05 by okraus           ###   ########.fr       */
+/*   Updated: 2023/03/08 14:54:11 by okraus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/push_swap.h"
 
 //testing dlist & list manipulation
-int	main(void)
+int	main(int argc, char *argv[])
 {
 	int	i;
 	int	j;
-	int	arr[10];
+	int	*arr_o;
+	int	*arr_i;
 	void *test;
 	t_dlist	**a;
 	t_dlist	**b;
 	t_dlist	*tmp;
-	t_dlist	*start_a;
 	t_dlist	*tmp2;
 	t_ps_info	inf;
 	t_ps_info	*info;
 
+	if (argc < 3)
+	{
+		return (0);
+	}
+	else
+	{
+		arr_i = malloc (sizeof(int) * argc - 1);
+		arr_o = malloc (sizeof(int) * argc - 1);
+	}
+	i = 1;
+	while (i < argc - 1)
+	{
+		arr_o[i - 1] = ft_atoi(argv[i]);
+		i++;
+	}
+	ft_index_array(&arr_o, &arr_i, argc - 1);
 	info = &inf;
 	info->a_size = 0;
 	info->a_start = NULL;
@@ -34,42 +50,28 @@ int	main(void)
 	info->b_start = NULL;
 	i = 0;
 	j = 9;
-	arr[0] = 1;
 	a = &info->a_start;
 	b = &info->b_start;
 	test = &i;
-	ft_printf("%3i|%p|%3i\n", i, test, *(int *)test);
-	start_a = ft_dlstnew(&arr[i]);
-	info->a_size = 1;
-	info->a_start = start_a;
-	ft_printf("%i\n", i);
+	
+	info->a_size = argc - 1;
+	ft_initialize_stack_a(arr_i, info);
+	/*
+	info->a_start = ft_dlstnew(&arr_i[0]);
 
-	while (i < 10)
+	i = 1;
+
+	while (i < argc - 1)
 	{
-		arr[i] = i + 1;
-		i++;
-	}
-
-	i = 3;
-
-	while (i < j)
-	{
-		tmp = ft_dlstnew(&arr[i]);
-		ft_printf("%i\n", i);
-		ft_printf("%4CprintC:%3i, num %3i|%p|%p|%p\n%0C", i, *(int *)tmp->content, tmp->prev, tmp, tmp->next);
+		tmp = ft_dlstnew(&arr_i[i]);
 		tmp2 = *a;
-		ft_printf("%1CprintD:%3i, num %3i|%p|%p|%p\n%0C", i, *(int *)tmp2->content, tmp2->prev, tmp2, tmp2->next);
-		ft_dlstadd(a, tmp);
 		info->a_size += 1;
 		info->a_start = tmp;
-		ft_printf("%2CprintB:%3i, num %3i|%p|%p|%p\n%0C", i, *(int *)tmp->content, tmp->prev, tmp, tmp->next);
 		i++;
-	}
-	ft_printf("%i\n", i);
-
+	}*/
 	tmp = *a;
 	i = 0;
-	ft_printf("%7CprintA:%3i, num %3i|%p|%p|%p%0C\n", i, *(int *)tmp->content, a, *a, **a);
+	//ft_printf("%7CprintA:%3i, num %3i|%p|%p|%p%0C\n", i, *(int *)tmp->content, a, *a, **a);
 	while (i < 15)
 	{
 		ft_printf("%2CprintB:%3i, num %3i|%p|%p|%p\n%0C", i, *(int *)tmp->content, tmp->prev, tmp, tmp->next);
@@ -91,10 +93,15 @@ int	main(void)
 		tmp = tmp->next;
 		i++;
 	}
+	tmp = info->a_start;
+	tmp2 = info->b_start;
+	ft_printf("%8CstackA:%3i, num %3i|%p|%p|%p%0C\n", i, *(int *)tmp->content, tmp->prev, tmp, tmp->next);
 	ft_ps_pb(a, b, info);
 	tmp = info->a_start;
 	tmp2 = info->b_start;
 	i = 0;
+	ft_printf("%6CstackA:%3i, num %3i|%p|%p|%p%0C\n", i, *(int *)tmp->content, tmp->prev, tmp, tmp->next);
+	ft_printf("%7CstackB:%3i, num %3i|%p|%p|%p%0C\n", i, *(int *)tmp2->content, tmp2->prev, tmp2, tmp2->next);
 	while (i < 12)
 	{
 		ft_printf("%1CstackA:%3i, num %3i|%p|%p|%p\n%0C", i, *(int *)tmp->content, tmp->prev, tmp, tmp->next);
@@ -105,10 +112,206 @@ int	main(void)
 			tmp2 = tmp2->next;
 		i++;
 	}
+	tmp = info->a_start;
+	tmp2 = info->b_start;
+	ft_printf("%8CPB test\nstackA:%3i, num %3i|%p|%p|%p%0C\n", i, *(int *)tmp->content, tmp->prev, tmp, tmp->next);
 	ft_ps_pb(a, b, info);
 	tmp = info->a_start;
 	tmp2 = info->b_start;
 	i = 0;
+	ft_printf("%6CstackA:%3i, num %3i|%p|%p|%p%0C\n", i, *(int *)tmp->content, tmp->prev, tmp, tmp->next);
+	ft_printf("%7CstackB:%3i, num %3i|%p|%p|%p%0C\n", i, *(int *)tmp2->content, tmp2->prev, tmp2, tmp2->next);
+	while (i < 12)
+	{
+		ft_printf("%1CstackA:%3i, num %3i|%p|%p|%p\n%0C", i, *(int *)tmp->content, tmp->prev, tmp, tmp->next);
+		ft_printf("%2CstackB:%3i, num %3i|%p|%p|%p\n%0C", i, *(int *)tmp2->content, tmp2->prev, tmp2, tmp2->next);
+		if (tmp->next)
+			tmp = tmp->next;
+		if (tmp2->next)
+			tmp2 = tmp2->next;
+		i++;
+	}
+	tmp = info->a_start;
+	tmp2 = info->b_start;
+	ft_printf("%8CPB test\nstackA:%3i, num %3i|%p|%p|%p%0C\n", i, *(int *)tmp->content, tmp->prev, tmp, tmp->next);
+	ft_ps_pb(a, b, info);
+	tmp = info->a_start;
+	tmp2 = info->b_start;
+	i = 0;
+	ft_printf("%6CstackA:%3i, num %3i|%p|%p|%p%0C\n", i, *(int *)tmp->content, tmp->prev, tmp, tmp->next);
+	ft_printf("%7CstackB:%3i, num %3i|%p|%p|%p%0C\n", i, *(int *)tmp2->content, tmp2->prev, tmp2, tmp2->next);
+	while (i < 12)
+	{
+		ft_printf("%1CstackA:%3i, num %3i|%p|%p|%p\n%0C", i, *(int *)tmp->content, tmp->prev, tmp, tmp->next);
+		ft_printf("%2CstackB:%3i, num %3i|%p|%p|%p\n%0C", i, *(int *)tmp2->content, tmp2->prev, tmp2, tmp2->next);
+		if (tmp->next)
+			tmp = tmp->next;
+		if (tmp2->next)
+			tmp2 = tmp2->next;
+		i++;
+	}
+	tmp = info->a_start;
+	tmp2 = info->b_start;
+	ft_printf("%8CRR test\nstackA:%3i, num %3i|%p|%p|%p%0C\n", i, *(int *)tmp->content, tmp->prev, tmp, tmp->next);
+	ft_ps_rr(a, b, info);
+	tmp = info->a_start;
+	tmp2 = info->b_start;
+	i = 0;
+	ft_printf("%6CstackA:%3i, num %3i|%p|%p|%p%0C\n", i, *(int *)tmp->content, tmp->prev, tmp, tmp->next);
+	ft_printf("%7CstackB:%3i, num %3i|%p|%p|%p%0C\n", i, *(int *)tmp2->content, tmp2->prev, tmp2, tmp2->next);
+	while (i < 12)
+	{
+		ft_printf("%1CstackA:%3i, num %3i|%p|%p|%p\n%0C", i, *(int *)tmp->content, tmp->prev, tmp, tmp->next);
+		ft_printf("%2CstackB:%3i, num %3i|%p|%p|%p\n%0C", i, *(int *)tmp2->content, tmp2->prev, tmp2, tmp2->next);
+		if (tmp->next)
+			tmp = tmp->next;
+		if (tmp2->next)
+			tmp2 = tmp2->next;
+		i++;
+	}
+	tmp = info->a_start;
+	tmp2 = info->b_start;
+	ft_printf("%8CRB test\nstackA:%3i, num %3i|%p|%p|%p%0C\n", i, *(int *)tmp->content, tmp->prev, tmp, tmp->next);
+	ft_ps_rb(b, info);
+	tmp = info->a_start;
+	tmp2 = info->b_start;
+	i = 0;
+	ft_printf("%6CstackA:%3i, num %3i|%p|%p|%p%0C\n", i, *(int *)tmp->content, tmp->prev, tmp, tmp->next);
+	ft_printf("%7CstackB:%3i, num %3i|%p|%p|%p%0C\n", i, *(int *)tmp2->content, tmp2->prev, tmp2, tmp2->next);
+	while (i < 12)
+	{
+		ft_printf("%1CstackA:%3i, num %3i|%p|%p|%p\n%0C", i, *(int *)tmp->content, tmp->prev, tmp, tmp->next);
+		ft_printf("%2CstackB:%3i, num %3i|%p|%p|%p\n%0C", i, *(int *)tmp2->content, tmp2->prev, tmp2, tmp2->next);
+		if (tmp->next)
+			tmp = tmp->next;
+		if (tmp2->next)
+			tmp2 = tmp2->next;
+		i++;
+	}
+	tmp = info->a_start;
+	tmp2 = info->b_start;
+	ft_printf("%8CPA test\nstackA:%3i, num %3i|%p|%p|%p%0C\n", i, *(int *)tmp->content, tmp->prev, tmp, tmp->next);
+	ft_ps_pa(a, b, info);
+	tmp = info->a_start;
+	tmp2 = info->b_start;
+	i = 0;
+	ft_printf("%6CstackA:%3i, num %3i|%p|%p|%p%0C\n", i, *(int *)tmp->content, tmp->prev, tmp, tmp->next);
+	ft_printf("%7CstackB:%3i, num %3i|%p|%p|%p%0C\n", i, *(int *)tmp2->content, tmp2->prev, tmp2, tmp2->next);
+	while (i < 12)
+	{
+		ft_printf("%1CstackA:%3i, num %3i|%p|%p|%p\n%0C", i, *(int *)tmp->content, tmp->prev, tmp, tmp->next);
+		ft_printf("%2CstackB:%3i, num %3i|%p|%p|%p\n%0C", i, *(int *)tmp2->content, tmp2->prev, tmp2, tmp2->next);
+		if (tmp->next)
+			tmp = tmp->next;
+		if (tmp2->next)
+			tmp2 = tmp2->next;
+		i++;
+	}
+
+	tmp = info->a_start;
+	tmp2 = info->b_start;
+	ft_printf("%8CRRR test\nstackA:%3i, num %3i|%p|%p|%p%0C\n", i, *(int *)tmp->content, tmp->prev, tmp, tmp->next);
+	ft_ps_rrr(a, b, info);
+	tmp = info->a_start;
+	tmp2 = info->b_start;
+	i = 0;
+	ft_printf("%6CstackA:%3i, num %3i|%p|%p|%p%0C\n", i, *(int *)tmp->content, tmp->prev, tmp, tmp->next);
+	ft_printf("%7CstackB:%3i, num %3i|%p|%p|%p%0C\n", i, *(int *)tmp2->content, tmp2->prev, tmp2, tmp2->next);
+	while (i < 12)
+	{
+		ft_printf("%1CstackA:%3i, num %3i|%p|%p|%p\n%0C", i, *(int *)tmp->content, tmp->prev, tmp, tmp->next);
+		ft_printf("%2CstackB:%3i, num %3i|%p|%p|%p\n%0C", i, *(int *)tmp2->content, tmp2->prev, tmp2, tmp2->next);
+		if (tmp->next)
+			tmp = tmp->next;
+		if (tmp2->next)
+			tmp2 = tmp2->next;
+		i++;
+	}
+	tmp = info->a_start;
+	tmp2 = info->b_start;
+	ft_printf("%8CRA test\nstackA:%3i, num %3i|%p|%p|%p%0C\n", i, *(int *)tmp->content, tmp->prev, tmp, tmp->next);
+	ft_ps_ra(a, info);
+	tmp = info->a_start;
+	tmp2 = info->b_start;
+	i = 0;
+	ft_printf("%6CstackA:%3i, num %3i|%p|%p|%p%0C\n", i, *(int *)tmp->content, tmp->prev, tmp, tmp->next);
+	ft_printf("%7CstackB:%3i, num %3i|%p|%p|%p%0C\n", i, *(int *)tmp2->content, tmp2->prev, tmp2, tmp2->next);
+	while (i < 12)
+	{
+		ft_printf("%1CstackA:%3i, num %3i|%p|%p|%p\n%0C", i, *(int *)tmp->content, tmp->prev, tmp, tmp->next);
+		ft_printf("%2CstackB:%3i, num %3i|%p|%p|%p\n%0C", i, *(int *)tmp2->content, tmp2->prev, tmp2, tmp2->next);
+		if (tmp->next)
+			tmp = tmp->next;
+		if (tmp2->next)
+			tmp2 = tmp2->next;
+		i++;
+	}
+	tmp = info->a_start;
+	tmp2 = info->b_start;
+	ft_printf("%8CPB test\nstackA:%3i, num %3i|%p|%p|%p%0C\n", i, *(int *)tmp->content, tmp->prev, tmp, tmp->next);
+	ft_ps_pb(a, b, info);
+	tmp = info->a_start;
+	tmp2 = info->b_start;
+	i = 0;
+	ft_printf("%6CstackA:%3i, num %3i|%p|%p|%p%0C\n", i, *(int *)tmp->content, tmp->prev, tmp, tmp->next);
+	ft_printf("%7CstackB:%3i, num %3i|%p|%p|%p%0C\n", i, *(int *)tmp2->content, tmp2->prev, tmp2, tmp2->next);
+	while (i < 12)
+	{
+		ft_printf("%1CstackA:%3i, num %3i|%p|%p|%p\n%0C", i, *(int *)tmp->content, tmp->prev, tmp, tmp->next);
+		ft_printf("%2CstackB:%3i, num %3i|%p|%p|%p\n%0C", i, *(int *)tmp2->content, tmp2->prev, tmp2, tmp2->next);
+		if (tmp->next)
+			tmp = tmp->next;
+		if (tmp2->next)
+			tmp2 = tmp2->next;
+		i++;
+	}
+	tmp = info->a_start;
+	tmp2 = info->b_start;
+	ft_printf("%8CRRB test\nstackA:%3i, num %3i|%p|%p|%p%0C\n", i, *(int *)tmp->content, tmp->prev, tmp, tmp->next);
+	ft_ps_rrb(b, info);
+	tmp = info->a_start;
+	tmp2 = info->b_start;
+	i = 0;
+	ft_printf("%6CstackA:%3i, num %3i|%p|%p|%p%0C\n", i, *(int *)tmp->content, tmp->prev, tmp, tmp->next);
+	ft_printf("%7CstackB:%3i, num %3i|%p|%p|%p%0C\n", i, *(int *)tmp2->content, tmp2->prev, tmp2, tmp2->next);
+	while (i < 12)
+	{
+		ft_printf("%1CstackA:%3i, num %3i|%p|%p|%p\n%0C", i, *(int *)tmp->content, tmp->prev, tmp, tmp->next);
+		ft_printf("%2CstackB:%3i, num %3i|%p|%p|%p\n%0C", i, *(int *)tmp2->content, tmp2->prev, tmp2, tmp2->next);
+		if (tmp->next)
+			tmp = tmp->next;
+		if (tmp2->next)
+			tmp2 = tmp2->next;
+		i++;
+	}
+	tmp = info->a_start;
+	tmp2 = info->b_start;
+	ft_printf("%8CPA test\nstackA:%3i, num %3i|%p|%p|%p%0C\n", i, *(int *)tmp->content, tmp->prev, tmp, tmp->next);
+	ft_ps_pa(a, b, info);
+	tmp = info->a_start;
+	tmp2 = info->b_start;
+	i = 0;
+	ft_printf("%6CstackA:%3i, num %3i|%p|%p|%p%0C\n", i, *(int *)tmp->content, tmp->prev, tmp, tmp->next);
+	ft_printf("%7CstackB:%3i, num %3i|%p|%p|%p%0C\n", i, *(int *)tmp2->content, tmp2->prev, tmp2, tmp2->next);
+	while (i < 12)
+	{
+		ft_printf("%1CstackA:%3i, num %3i|%p|%p|%p\n%0C", i, *(int *)tmp->content, tmp->prev, tmp, tmp->next);
+		ft_printf("%2CstackB:%3i, num %3i|%p|%p|%p\n%0C", i, *(int *)tmp2->content, tmp2->prev, tmp2, tmp2->next);
+		if (tmp->next)
+			tmp = tmp->next;
+		if (tmp2->next)
+			tmp2 = tmp2->next;
+		i++;
+	}
+	tmp = info->a_start;
+	tmp2 = info->b_start;
+	ft_printf("%8CRRA test\nstackA:%3i, num %3i|%p|%p|%p%0C\n", i, *(int *)tmp->content, tmp->prev, tmp, tmp->next);
+	ft_ps_rra(a, info);
+	tmp = info->a_start;
+	tmp2 = info->b_start;
+	i = 0;
+	ft_printf("%6CstackA:%3i, num %3i|%p|%p|%p%0C\n", i, *(int *)tmp->content, tmp->prev, tmp, tmp->next);
+	ft_printf("%7CstackB:%3i, num %3i|%p|%p|%p%0C\n", i, *(int *)tmp2->content, tmp2->prev, tmp2, tmp2->next);
 	while (i < 12)
 	{
 		ft_printf("%1CstackA:%3i, num %3i|%p|%p|%p\n%0C", i, *(int *)tmp->content, tmp->prev, tmp, tmp->next);
@@ -121,6 +324,8 @@ int	main(void)
 	}
 	ft_dlstclear2(a);
 	ft_dlstclear2(b);
+	free(arr_i);
+	free(arr_o);
 
 	return (0);
 }

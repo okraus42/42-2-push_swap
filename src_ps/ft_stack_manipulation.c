@@ -6,7 +6,7 @@
 /*   By: okraus <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 08:35:25 by okraus            #+#    #+#             */
-/*   Updated: 2023/03/08 11:17:48 by okraus           ###   ########.fr       */
+/*   Updated: 2023/03/08 12:49:36 by okraus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,37 +72,94 @@ void	ft_ps_ss(t_dlist **a, t_dlist **b, t_ps_info *info)
 
 void	ft_ps_pa(t_dlist **a, t_dlist **b, t_ps_info *info)
 {
+	t_dlist	*tmp;
+	t_dlist	*tmp2;
+
 	if (info->b_size > 0)
 	{
+		tmp = *b;
+		tmp2 = tmp->next;
+		ft_dlstmoveone(a, b);
+		info->a_start = tmp2;
+		info->b_start = tmp;
 		info->a_size += 1;
 		info->b_size -= 1;
-		ft_dlstmoveone(a, b);
 	}
 }
 
 void	ft_ps_pb(t_dlist **a, t_dlist **b, t_ps_info *info)
 {
 	t_dlist	*tmp;
+	t_dlist	*tmp2;
 
 	if (info->a_size > 0)
 	{
-		if(!info->b_size)
-		{
-			tmp = *a;
-			ft_dlstmoveout(a);
-			info->a_start = tmp->next;
-			info->b_start = tmp;
-			tmp->next = NULL;
-			tmp->prev = NULL;			
-		}
-		else
-		{
-			tmp = *a;
-			ft_dlstmoveone(b, a);
-			info->a_start = tmp->next;
-			info->b_start = tmp;
-		}
+		tmp = *a;
+		tmp2 = tmp->next;
+		ft_dlstmoveone(b, a);
+		info->a_start = tmp2;
+		info->b_start = tmp;
 		info->a_size -= 1;
 		info->b_size += 1;
 	}
+}
+
+void	ft_ps_ra(t_dlist **a, t_ps_info *info)
+{
+	t_dlist	*tmp;
+
+	if (info->a_size > 1)
+	{
+		tmp = *a;
+		tmp = tmp->next;
+		info->a_start = tmp;
+	}
+}
+
+void	ft_ps_rb(t_dlist **b, t_ps_info *info)
+{
+	t_dlist	*tmp;
+
+	if (info->b_size > 1)
+	{
+		tmp = *b;
+		tmp = tmp->next;
+		info->b_start = tmp;
+	}
+}
+
+void	ft_ps_rr(t_dlist **a, t_dlist **b, t_ps_info *info)
+{
+	ft_ps_ra(a, info);
+	ft_ps_rb(b, info);
+}
+
+void	ft_ps_rra(t_dlist **a, t_ps_info *info)
+{
+	t_dlist	*tmp;
+
+	if (info->a_size > 1)
+	{
+		tmp = *a;
+		tmp = tmp->prev;
+		info->a_start = tmp;
+	}
+}
+
+void	ft_ps_rrb(t_dlist **b, t_ps_info *info)
+{
+	t_dlist	*tmp;
+
+	if (info->b_size > 1)
+	{
+		tmp = *b;
+		tmp = tmp->prev;
+		info->b_start = tmp;
+	}
+}
+
+void	ft_ps_rrr(t_dlist **a, t_dlist **b, t_ps_info *info)
+{
+	ft_ps_rra(a, info);
+	ft_ps_rrb(b, info);
 }
