@@ -6,7 +6,7 @@
 /*   By: okraus <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 15:43:08 by okraus            #+#    #+#             */
-/*   Updated: 2023/03/08 14:33:17 by okraus           ###   ########.fr       */
+/*   Updated: 2023/03/09 17:52:46 by okraus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ typedef struct s_ps_arr
 void	*ft_prefill_array(int ***array);
 void	ft_index_array(int **arr1, int **arr2, int size);
 void	ft_initialize_stack_a(int *arr, t_ps_info *info);
+void	ft_ps_cpa(t_ps_info *inf, t_ps_info *it);
+void	ft_ps_cpb(t_ps_info *inf, t_ps_info *it);
 
 // stack manipulation functions
 void	ft_ps_sa(t_dlist **a, t_ps_info *info);
@@ -67,5 +69,8 @@ void	ft_ps_rr(t_dlist **a, t_dlist **b, t_ps_info *info);
 void	ft_ps_rra(t_dlist **a, t_ps_info *info);
 void	ft_ps_rrb(t_dlist **b, t_ps_info *info);
 void	ft_ps_rrr(t_dlist **a, t_dlist **b, t_ps_info *info);
+
+// solving
+int		ft_ps_bruteforce(t_ps_info *info);
 
 #endif

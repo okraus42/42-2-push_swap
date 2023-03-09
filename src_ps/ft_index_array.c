@@ -6,12 +6,11 @@
 /*   By: okraus <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 17:28:42 by okraus            #+#    #+#             */
-/*   Updated: 2023/03/08 17:16:44 by okraus           ###   ########.fr       */
+/*   Updated: 2023/03/08 17:52:11 by okraus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/push_swap.h"
-
 
 // arr2 must be full of 0;
 void	ft_index_array(int **array1, int **array2, int size)

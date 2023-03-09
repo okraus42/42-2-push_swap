@@ -6,7 +6,7 @@
 /*   By: okraus <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 18:11:54 by okraus            #+#    #+#             */
-/*   Updated: 2023/03/08 17:40:37 by okraus           ###   ########.fr       */
+/*   Updated: 2023/03/09 18:15:07 by okraus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,16 +61,49 @@ int	main(int argc, char *argv[])
 	ft_initialize_stack_a(arr_i, info);
 	tmp = *a;
 	i = 0;
+	ft_ps_pb(a, b, info);
+	ft_ps_pb(a, b, info);
 	//ft_ps_sa(a, info);
 	tmp = info->a_start;
 	i = 0;
-	while (i < 12)
+	tmp2 = info->b_start;
+	ft_printf("abcd\n");
+	if (info->a_size || info->b_size)
 	{
-		ft_printf("%1CprintF:%3i, num %3i|%p|%p|%p\n%0C", i, *(int *)tmp->content, tmp->prev, tmp, tmp->next);
-		tmp = tmp->next;
-		i++;
+		while (tmp && i < info->a_size)
+		{
+			ft_printf("%1CstackA:%3i, num %3i|%p|%p|%p\n%0C", i, *(int *)tmp->content, tmp->prev, tmp, tmp->next);
+			if (tmp->next)
+				tmp = tmp->next;
+			i++;
+		}
+		i = 0;
+		while (tmp2 && i < info->b_size)
+		{
+			ft_printf("%2CstackB:%3i, num %3i|%p|%p|%p\n%0C", i, *(int *)tmp2->content, tmp2->prev, tmp2, tmp2->next);
+			if (tmp2->next)
+				tmp2 = tmp2->next;
+			i++;
+		}
 	}
-	/*
+
+	ft_ps_bruteforce(info);
+
+	
+	
+	if (*a)
+		ft_dlstclear2(a);
+	if (*b)
+	{
+		ft_dlstclear2(b);
+	}
+	free(arr_i);
+	free(arr_o);
+
+	return (0);
+}
+
+/*
 	tmp = info->a_start;
 	tmp2 = info->b_start;
 	ft_printf("%8CstackA:%3i, num %3i|%p|%p|%p%0C\n", i, *(int *)tmp->content, tmp->prev, tmp, tmp->next);
@@ -264,25 +297,6 @@ int	main(int argc, char *argv[])
 	}
 	tmp = info->a_start;
 	tmp2 = info->b_start;
-	ft_printf("%8CPA test\nstackA:%3i, num %3i|%p|%p|%p%0C\n", i, *(int *)tmp->content, tmp->prev, tmp, tmp->next);
-	ft_ps_pa(a, b, info);
-	tmp = info->a_start;
-	tmp2 = info->b_start;
-	i = 0;
-	ft_printf("%6CstackA:%3i, num %3i|%p|%p|%p%0C\n", i, *(int *)tmp->content, tmp->prev, tmp, tmp->next);
-	ft_printf("%7CstackB:%3i, num %3i|%p|%p|%p%0C\n", i, *(int *)tmp2->content, tmp2->prev, tmp2, tmp2->next);
-	while (i < 12)
-	{
-		ft_printf("%1CstackA:%3i, num %3i|%p|%p|%p\n%0C", i, *(int *)tmp->content, tmp->prev, tmp, tmp->next);
-		ft_printf("%2CstackB:%3i, num %3i|%p|%p|%p\n%0C", i, *(int *)tmp2->content, tmp2->prev, tmp2, tmp2->next);
-		if (tmp->next)
-			tmp = tmp->next;
-		if (tmp2->next)
-			tmp2 = tmp2->next;
-		i++;
-	}
-	tmp = info->a_start;
-	tmp2 = info->b_start;
 	ft_printf("%8CRRA test\nstackA:%3i, num %3i|%p|%p|%p%0C\n", i, *(int *)tmp->content, tmp->prev, tmp, tmp->next);
 	ft_ps_rra(a, info);
 	tmp = info->a_start;
@@ -301,17 +315,6 @@ int	main(int argc, char *argv[])
 		i++;
 	}
 	*/
-	if (*a)
-		ft_dlstclear2(a);
-	if (*b)
-	{
-		ft_dlstclear2(b);
-	}
-	free(arr_i);
-	free(arr_o);
-
-	return (0);
-}
 
 
 /*
