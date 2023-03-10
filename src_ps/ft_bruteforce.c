@@ -6,7 +6,7 @@
 /*   By: okraus <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 15:15:09 by okraus            #+#    #+#             */
-/*   Updated: 2023/03/10 16:45:34 by okraus           ###   ########.fr       */
+/*   Updated: 2023/03/10 20:46:19 by okraus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,11 +112,12 @@ int	ft_ps_bftest(t_ps_info *it, int i)
 	if (!it->b_size)
 	{
 		tmp = it->a_start;
-		ft_printf("it->a_size = %i\n", it->a_size);
-		i = it->a_size;
+		ft_printf("it->a_size = %i, it->a_start = %p\n", it->a_size, it->a_start);
+		i = it->a_size - 1;
 		while (i)
 		{
-			ft_printf("tmp = %p, i = %i, cont = %i\n", tmp, i, *(int *)tmp->content); 
+			ft_printf("tmp = %p\n", tmp);
+			ft_printf("tmp = %p, tmp->prev = %p, tmp->next = %p, =i = %i, cont = %i\n", tmp, tmp->prev, tmp->next, i, *(int *)tmp->content); 
 			tmp = tmp->prev;
 			ft_printf("%2Ctmp = %p, i = %i, cont = %i%0C\n", tmp, i, *(int *)tmp->content); 
 			if (*(int *)tmp->content == i)
@@ -124,7 +125,7 @@ int	ft_ps_bftest(t_ps_info *it, int i)
 			else
 				return (0);
 		}
-		ft_printf("what?\n");
+		ft_printf("what%i?\n", i);
 		if (!i)
 			return (1);
 	}
@@ -139,6 +140,7 @@ static int	ft_ps_bf2(t_ps_info *inf, t_ps_info *it)
 	t_dlist	*tmp2;	//remove later
 	int		i;
 	int		j;		//remove later
+	int		end;
 
 	i = 0;
 	at = NULL;
@@ -157,7 +159,7 @@ static int	ft_ps_bf2(t_ps_info *inf, t_ps_info *it)
 		}
 		*/
 		if (ft_ps_bftest(it, i))
-			j = -1;
+			end = -1;
 		ft_printf("\n\n%7CBRUTE FORCE YEAH %i%0C\n\n", i);
 		tmp = it->a_start;
 		j = 0;
@@ -185,7 +187,7 @@ static int	ft_ps_bf2(t_ps_info *inf, t_ps_info *it)
 		if (it->b_start)
 			ft_dlstclear2(&it->b_start);
 		i++;
-		if (j < 0)
+		if (end < 0)
 			return (i); 
 	}
 	return (-1);

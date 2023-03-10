@@ -6,7 +6,7 @@
 /*   By: okraus <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 18:11:54 by okraus            #+#    #+#             */
-/*   Updated: 2023/03/10 15:10:51 by okraus           ###   ########.fr       */
+/*   Updated: 2023/03/10 21:05:58 by okraus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,13 +61,64 @@ int	main(int argc, char *argv[])
 	ft_initialize_stack_a(arr_i, info);
 	tmp = *a;
 	i = 0;
-	//ft_ps_pb(a, b, info);
-	//ft_ps_pb(a, b, info);
-	//ft_ps_sa(a, info);
+	ft_printf("%i|%i\n", info->a_size, info->b_size);
+	ft_ps_pb(a, b, info);
 	tmp = info->a_start;
 	i = 0;
 	tmp2 = info->b_start;
-	ft_printf("abcd\n");
+	ft_printf("pb\n");
+	if (info->a_size || info->b_size)
+	{
+		while (tmp && i < info->a_size)
+		{
+			ft_printf("%1CstackA:%3i, num %3i|%p|%p|%p\n%0C", i, *(int *)tmp->content, tmp->prev, tmp, tmp->next);
+			if (tmp->next)
+				tmp = tmp->next;
+			i++;
+		}
+		i = 0;
+		while (tmp2 && i < info->b_size)
+		{
+			ft_printf("%2CstackB:%3i, num %3i|%p|%p|%p\n%0C", i, *(int *)tmp2->content, tmp2->prev, tmp2, tmp2->next);
+			if (tmp2->next)
+				tmp2 = tmp2->next;
+			i++;
+		}
+	}
+
+	ft_ps_pa(a, b, info);
+	tmp = info->a_start;
+	i = 0;
+	tmp2 = info->b_start;
+	ft_printf("pa1\n");
+	ft_printf("%i|%i\n", info->a_size, info->b_size);
+	if (info->a_size || info->b_size)
+	{
+		ft_printf("pa2\n");
+		while (tmp && i < info->a_size)
+		{
+			ft_printf("pa3\n");
+			ft_printf("%1CstackA:%3i, num %3i|%p|%p|%p\n%0C", i, *(int *)tmp->content, tmp->prev, tmp, tmp->next);
+			if (tmp->next)
+				tmp = tmp->next;
+			i++;
+		}
+		i = 0;
+		while (tmp2 && i < info->b_size)
+		{
+			ft_printf("pa4\n");
+			ft_printf("%2CstackB:%3i, num %3i|%p|%p|%p\n%0C", i, *(int *)tmp2->content, tmp2->prev, tmp2, tmp2->next);
+			if (tmp2->next)
+				tmp2 = tmp2->next;
+			i++;
+		}
+	}
+
+	ft_ps_sa(a, info);
+	tmp = info->a_start;
+	i = 0;
+	tmp2 = info->b_start;
+	ft_printf("sa\n");
 	if (info->a_size || info->b_size)
 	{
 		while (tmp && i < info->a_size)

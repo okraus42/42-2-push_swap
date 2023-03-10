@@ -6,7 +6,7 @@
 /*   By: okraus <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 08:35:25 by okraus            #+#    #+#             */
-/*   Updated: 2023/03/08 17:52:15 by okraus           ###   ########.fr       */
+/*   Updated: 2023/03/10 21:17:42 by okraus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,10 +78,19 @@ void	ft_ps_pa(t_dlist **a, t_dlist **b, t_ps_info *info)
 	if (info->b_size > 0)
 	{
 		tmp = *b;
-		tmp2 = tmp->next;
-		ft_dlstmoveone(a, b);
-		info->a_start = tmp2;
-		info->b_start = tmp;
+		if (info->b_size == 1)
+		{
+			ft_dlstadd(a, tmp);
+			info->a_start = tmp;
+			info->b_start = NULL;
+		}
+		else
+		{
+			tmp2 = tmp->next;
+			ft_dlstmoveone(a, b);
+			info->a_start = tmp2;
+			info->b_start = tmp;
+		}
 		info->a_size += 1;
 		info->b_size -= 1;
 	}
@@ -95,10 +104,19 @@ void	ft_ps_pb(t_dlist **a, t_dlist **b, t_ps_info *info)
 	if (info->a_size > 0)
 	{
 		tmp = *a;
-		tmp2 = tmp->next;
-		ft_dlstmoveone(b, a);
-		info->a_start = tmp2;
-		info->b_start = tmp;
+		if (info->a_size == 1)
+		{
+			ft_dlstadd(b, tmp);
+			info->a_start = NULL;
+			info->b_start = tmp;
+		}
+		else
+		{
+			tmp2 = tmp->next;
+			ft_dlstmoveone(b, a);
+			info->a_start = tmp2;
+			info->b_start = tmp;
+		}
 		info->a_size -= 1;
 		info->b_size += 1;
 	}
