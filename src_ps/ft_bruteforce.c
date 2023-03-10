@@ -6,7 +6,7 @@
 /*   By: okraus <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 15:15:09 by okraus            #+#    #+#             */
-/*   Updated: 2023/03/09 18:23:07 by okraus           ###   ########.fr       */
+/*   Updated: 2023/03/10 15:10:39 by okraus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ void	ft_ps_cpa(t_ps_info *inf, t_ps_info *it)
 		tmps = tmps->prev;
 		tmpd = ft_dlstnew(tmps->content);
 		ft_dlstadd(&it->a_start, tmpd);
-		ft_printf("aaa\n");
 		it->a_start = tmpd;
 		i--;
 	}
@@ -77,24 +76,62 @@ static int	ft_ps_bf2(t_ps_info *inf, t_ps_info *it)
 {
 	t_dlist **at;
 	t_dlist **bt;
+	t_dlist	*tmp;	//remove later
+	t_dlist	*tmp2;	//remove later
 	int		i;
+	int		j;		//remove later
 
 	i = 0;
 	at = NULL;
 	bt = NULL;
-	ft_ps_cpa(inf, it);
-	ft_ps_cpb(inf, it);
-	/*while (i < 0x7FFFFFFF)
+	while (i < 0x7FFFFFFF)
 	{
-		//if (ft_ps_bftest(at, bt, it, i))
+		ft_copyinfo(inf, it);
+		ft_ps_cpa(inf, it);
+		ft_ps_cpb(inf, it);
+		j = i;
+		while (j)
+		{
+			ft_ps_pb(&it->a_start, &it->b_start, it);	
+			j--;
+		}
+		/*if (ft_ps_bftest(at, bt, it, i))
 		{
 			//free
 			return (i);
-		}
+		}*/
 		//ft_ps_bfreverse(at, bt, it, i);
-		//free
+
+		ft_printf("\n\n%7CBRUTE FORCE YEAH %i%0C\n\n", i);
+		tmp = it->a_start;
+		j = 0;
+		tmp2 = it->b_start;
+		if (it->a_size || it->b_size)
+		{
+			while (tmp && j < it->a_size)
+			{
+				ft_printf("%1CstackA2:%3i, num %3i|%p|%p|%p\n%0C", j, *(int *)tmp->content, tmp->prev, tmp, tmp->next);
+				if (tmp->next)
+					tmp = tmp->next;
+				j++;
+			}
+			j = 0;
+			while (tmp2 && j < it->b_size)
+			{
+				ft_printf("%2CstackB2:%3i, num %3i|%p|%p|%p\n%0C", j, *(int *)tmp2->content, tmp2->prev, tmp2, tmp2->next);
+				if (tmp2->next)
+					tmp2 = tmp2->next;
+				j++;
+			}
+		}
+		if (it->a_start)
+			ft_dlstclear2(&it->a_start);
+		if (it->b_start)
+			ft_dlstclear2(&it->b_start);
 		i++;
-	}*/
+		if (i == 4)
+			return (i); 
+	}
 	return (-1);
 }
 
@@ -109,7 +146,6 @@ int	ft_ps_bruteforce(t_ps_info *info)
 	info_t = &inf2;
 	ft_copyinfo(info, info_t);
 	i = ft_ps_bf2(info, info_t);
-
 	tmp = info_t->a_start;
 	i = 0;
 	tmp2 = info_t->b_start;

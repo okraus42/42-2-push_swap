@@ -6,7 +6,7 @@
 /*   By: okraus <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 18:11:54 by okraus            #+#    #+#             */
-/*   Updated: 2023/03/09 18:15:07 by okraus           ###   ########.fr       */
+/*   Updated: 2023/03/10 15:10:51 by okraus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	main(int argc, char *argv[])
 	}
 	else
 	{
-		arr_i = malloc (sizeof(int) * argc - 1);
+		arr_i = ft_calloc (sizeof(int), argc - 1);
 		arr_o = ft_calloc (sizeof(int), argc - 1);
 	}
 	i = 1;
@@ -61,8 +61,8 @@ int	main(int argc, char *argv[])
 	ft_initialize_stack_a(arr_i, info);
 	tmp = *a;
 	i = 0;
-	ft_ps_pb(a, b, info);
-	ft_ps_pb(a, b, info);
+	//ft_ps_pb(a, b, info);
+	//ft_ps_pb(a, b, info);
 	//ft_ps_sa(a, info);
 	tmp = info->a_start;
 	i = 0;
