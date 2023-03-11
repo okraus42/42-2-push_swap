@@ -6,11 +6,37 @@
 /*   By: okraus <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 08:35:25 by okraus            #+#    #+#             */
-/*   Updated: 2023/03/10 21:17:42 by okraus           ###   ########.fr       */
+/*   Updated: 2023/03/11 13:38:39 by okraus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/push_swap.h"
+
+/*t_dlist	*tmp;
+	int		j;
+
+	ft_printf("a_size = %i\n", info->a_size);
+	tmp = info->a_start;
+	j = 0;
+	tmp2 = info->b_start;
+	if (info->a_size || info->b_size)
+	{
+		while (tmp && j < info->a_size)
+		{
+			ft_printf("%1CstackA2:%3i, num %3i|%p|%p|%p\n%0C", j, *(int *)tmp->content, tmp->prev, tmp, tmp->next);
+			if (tmp->next)
+				tmp = tmp->next;
+			j++;
+		}
+		j = 0;
+		while (tmp2 && j < info->b_size)
+		{
+			ft_printf("%2CstackB2:%3i, num %3i|%p|%p|%p\n%0C", j, *(int *)tmp2->content, tmp2->prev, tmp2, tmp2->next);
+			if (tmp2->next)
+				tmp2 = tmp2->next;
+			j++;
+		}
+	}*/
 
 void	ft_ps_sa(t_dlist **a, t_ps_info *info)
 {
@@ -18,7 +44,7 @@ void	ft_ps_sa(t_dlist **a, t_ps_info *info)
 	t_dlist	*tmp2;
 	t_dlist	*tmp3;
 	t_dlist	*tmp4;
-
+	
 	if (info->a_size > 1)
 	{
 		tmp2 = *a;
@@ -88,8 +114,8 @@ void	ft_ps_pa(t_dlist **a, t_dlist **b, t_ps_info *info)
 		{
 			tmp2 = tmp->next;
 			ft_dlstmoveone(a, b);
-			info->a_start = tmp2;
-			info->b_start = tmp;
+			info->b_start = tmp2;
+			info->a_start = tmp;
 		}
 		info->a_size += 1;
 		info->b_size -= 1;
