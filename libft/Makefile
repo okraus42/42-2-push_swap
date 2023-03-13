@@ -6,7 +6,7 @@
 #    By: okraus <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/14 13:43:18 by okraus            #+#    #+#              #
-#    Updated: 2023/03/08 11:18:29 by okraus           ###   ########.fr        #
+#    Updated: 2023/03/13 17:28:14 by okraus           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -163,24 +163,6 @@ all:			announce $(NAME)
 announce: 
 				@echo "$(RED)Not compiling because library already exists\n$(NRM_FORMAT)"
 
-start_msg:
-				@echo "$(RETURN)$(YELLOW)Compiling libft core functions$(NRM_FORMAT)"
-				@echo " "
-				
-lib_msg:
-				@echo "$(RETURN)$(RETURN)$(GREEN)Libft core functions compiled$(NRM_FORMAT)"
-				@echo "$(YELLOW)Compiling get_next_line functions$(NRM_FORMAT)"
-				@echo " "
-
-gnl_msg:
-				@echo "$(RETURN)$(RETURN)$(GREEN)Get_next_line functions compiled$(NRM_FORMAT)"
-				@echo "$(YELLOW)Compiling ft_printf core functions$(NRM_FORMAT)"
-				@echo " "
-
-pf_msg:
-				@echo "$(RETURN)$(RETURN)$(GREEN)Ft_printf functions compiled$(NRM_FORMAT)"
-				@echo " "
-
 # COMPILATION
 
 $(OBJ_DIR)%.o:	$(SRC_LIB_DIR)%.c # start_msg
@@ -220,7 +202,7 @@ $(OBJ_DIR)%.o:	$(SRC_PF_DIR)%.c # gnl_msg
 				@$(ECHO)
 
 $(NAME): 		$(OBJ) # pf_msg
-				@echo "$(RETURN)$(RETURN)$(GREEN)Compilation complete!$(NRM_FORMAT)"
+				@echo "$(RETURN)$(RETURN)$(RETURN)$(GREEN)LIBFT compilation complete!$(NRM_FORMAT)"
 				@$(LIBC) $(NAME) $(OBJ)
 				@$(PRINT2)
 				@$(PRINT1)
@@ -254,4 +236,4 @@ re: fclean all
 
 # Phony stuff for rules
 
-.PHONY: all announce clean compiling_msg fclean re pf_msg gnl_msg lib_msg start_msg
+.PHONY: all announce clean fclean re

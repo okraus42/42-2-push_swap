@@ -6,7 +6,7 @@
 #    By: okraus <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/04 15:40:17 by okraus            #+#    #+#              #
-#    Updated: 2023/03/12 17:30:32 by okraus           ###   ########.fr        #
+#    Updated: 2023/03/13 17:30:28 by okraus           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,8 +21,8 @@ endif
 
 NAME		=	push_swap
 #NAME_B		=	checker
-INCS_F		=	libft/
-INCS		=	libft.a
+LIBFT_F		=	libft/
+LIBFT		=	libft.a
 CC 			=	cc
 CFLAGS		=	-Wall -Wextra -Werror -O3
 OBJ_DIR		=	objects/
@@ -30,8 +30,9 @@ OBJ_DIR		=	objects/
 
 # SOURCES
 
-SRC			=	$(addprefix $(SRC_PS_DIR), $(addsuffix .c, $(SRC_PS))) \
-				$(addprefix $(SRC_CH_DIR), $(addsuffix .c, $(SRC_CH)))
+SRC			=	$(addprefix $(SRC_PS_DIR), $(addsuffix .c, $(SRC_PS)))
+
+#SRC_B		=	$(addprefix $(SRC_CH_DIR), $(addsuffix .c, $(SRC_CH)))
 
 # Source directories
 
@@ -46,7 +47,7 @@ SRC_PS		=	ft_bruteforce \
 				ft_initialize_stack_a \
 				ft_stack_manipulation \
 				push_swap \
-				temp.c
+				temp
 
 # Checker functions
 
@@ -76,23 +77,24 @@ PRINT2		=	for num in `seq 1 $(BAR_LENGTH)` ; do \
 
 # Objects
 
-OBJ			=	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_PS))) \
-				$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_CG))) 
+OBJ			=	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_PS)))
+
+OBJ_B		=	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_CG))) 
 
 # RULES
 
 all:			announce $(LIBFT) $(NAME)
 
-#				@$(PRINT2)
-#				@$(PRINT1)
-#				@$(ECHO) All done
-#				@echo "$(GREEN)Amazing <<$(REVERSE)libft.a$(NRM_FORMAT)$(GREEN)>> compiled!$(NRM_FORMAT)"
+				@$(PRINT2)
+				@$(PRINT1)
+				@$(ECHO)
+				@echo "$(GREEN)Amazing <<$(REVERSE)push_swap$(NRM_FORMAT)$(GREEN)>> compiled!$(NRM_FORMAT)"
 				
 
 # MESSAGES 
 
 announce: 
-				@echo "$(RED)Not compiling because library already exists\n$(NRM_FORMAT)"
+				@echo "$(RED)You should not see this (unless the program already exists)\n$(NRM_FORMAT)"
 
 
 # COMPILATION
@@ -100,32 +102,34 @@ announce:
 $(OBJ_DIR)%.o:	$(SRC_PS_DIR)%.c
 				@mkdir -p $(OBJ_DIR)
 				@sleep 0.01
-				@echo "$(RETURN)$(RETURN)$(YELLOW)Compiling Libft: $< $(NRM_FORMAT)"
+				@echo "$(RETURN)$(RETURN)$(YELLOW)Compiling PUSH_SWAP: $< $(NRM_FORMAT)"
 				@$(PRINT2)
 				@$(PRINT1)
 				@$(CC) $(CFLAGS) -c $< -o $@
 				@$(ECHO)
 
-$(OBJ_DIR)%.o:	$(SRC_CH_DIR)%.c
-				@mkdir -p $(OBJ_DIR)
-				@sleep 0.01
-				@echo "$(RETURN)$(RETURN)$(YELLOW)Compiling extras: $< $(NRM_FORMAT)"
-				@$(PRINT2)
-				@$(PRINT1)
-				@$(CC) $(CFLAGS) -c $< -o $@
-				@$(ECHO)
+#$(OBJ_DIR)%.o:	$(SRC_CH_DIR)%.c
+#				@mkdir -p $(OBJ_DIR)
+#				@sleep 0.01
+#				@echo "$(RETURN)$(RETURN)$(YELLOW)Compiling CHCKER: $< $(NRM_FORMAT)"
+#				@$(PRINT2)
+#				@$(PRINT1)
+#				@$(CC) $(CFLAGS) -c $< -o $@
+#				@$(ECHO)
 
-$(NAME): 		$(OBJ) # pf_msg
-				@echo "$(RETURN)$(RETURN)$(GREEN)Compilation complete!$(NRM_FORMAT)"
-				@$(LIBC) $(NAME) $(OBJ)
+$(NAME): 		$(OBJ)
+				@echo "$(RETURN)$(RETURN)$(GREEN)Libft compilation complete!$(NRM_FORMAT)"
+				@$(CC) $(CFLAGS) $(SRC) libft.a -o $(NAME)
 				@$(PRINT2)
 				@$(PRINT1)
 				@$(ECHO)
-				@echo "$(GREEN)Amazing <<$(REVERSE)libft.a$(NRM_FORMAT)$(GREEN)>> compiled!$(NRM_FORMAT)"
+				@echo "$(RETURN)$(RETURN)$(GREEN)Push swap compiled!$(NRM_FORMAT)"
 
 $(LIBFT):
-				@make -C $(LIBFT_F)
+				@echo "$(RETURN)$(RETURN)$(YELLOW)Compiling LIBFT: $< $(NRM_FORMAT)"
+				@make -s -C $(LIBFT_F)
 				@cp libft/libft.a .
+				@echo "$(YELLOW)Compiling PUSH SWAP: $< $(NRM_FORMAT)"
 				@$(PRINT2)
 				@$(PRINT1)
 				@$(ECHO)
@@ -133,7 +137,8 @@ $(LIBFT):
 # Fclean library
 
 clean:
-				@make fclean -C $(LIBFT_F)
+				@rm -rf $(OBJ_DIR)
+				@make fclean -s -C $(LIBFT_F)
 				@echo "$(RED)Objects removed!$(NRM_FORMAT)"
 				@$(PRINT2)
 				@$(PRINT1)
@@ -142,21 +147,21 @@ clean:
 # Remove the program after running clean
 
 fclean:			clean
-				@rm $(NAME)
-				@rm $(NAME_B)
 				@rm $(LIBFT)
-				@echo "$(RETURN)$(RED)Library deleted!$(NRM_FORMAT)"
+				@rm $(NAME)
+#				@rm $(NAME_B)
+				@echo "$(RETURN)$(RED)Library and program deleted!$(NRM_FORMAT)"
 				@$(PRINT2)
 				@$(PRINT1)
 				@$(ECHO)
 
 # Remove stuff and make it all again
 
-re: fclean all
-	@$(PRINT2)
-	@$(PRINT1)
-	@$(ECHO)
+re: 			fclean all
+				@$(PRINT2)
+				@$(PRINT1)
+				@$(ECHO)
 
 # Phony stuff for rules
 
-.PHONY: all announce clean compiling_msg fclean re pf_msg gnl_msg lib_msg start_msg
+.PHONY: all announce clean fclean re
