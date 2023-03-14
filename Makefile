@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: okraus <marvin@42.fr>                      +#+  +:+       +#+         #
+#    By: okraus <okraus@student.42prague.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/04 15:40:17 by okraus            #+#    #+#              #
-#    Updated: 2023/03/13 17:30:28 by okraus           ###   ########.fr        #
+#    Updated: 2023/03/14 15:11:25 by okraus           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -91,6 +91,8 @@ all:			announce $(LIBFT) $(NAME)
 				@echo "$(GREEN)Amazing <<$(REVERSE)push_swap$(NRM_FORMAT)$(GREEN)>> compiled!$(NRM_FORMAT)"
 				
 
+#bonus:
+
 # MESSAGES 
 
 announce: 
@@ -164,4 +166,4 @@ re: 			fclean all
 
 # Phony stuff for rules
 
-.PHONY: all announce clean fclean re
+.PHONY: all announce clean fclean re bonus
