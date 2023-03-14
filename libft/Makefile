@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: okraus <marvin@42.fr>                      +#+  +:+       +#+         #
+#    By: okraus <okraus@student.42prague.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/14 13:43:18 by okraus            #+#    #+#              #
-#    Updated: 2023/03/13 17:28:14 by okraus           ###   ########.fr        #
+#    Updated: 2023/03/14 16:26:04 by okraus           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ LIBC		=	ar rcs
 CC 			=	cc
 CFLAGS		=	-Wall -Wextra -Werror -O3
 OBJ_DIR		=	objects/
-NUM_COM		:=	make -n | wc -l
+SLEEP		=	#sleep 0.5
 
 # SOURCES
 
@@ -95,6 +95,7 @@ SRC_EX		=	ft_dlstadd \
 				ft_dlstdelone \
 				ft_dlstmoveone \
 				ft_dlstnew \
+				ft_free_split \
 				ft_print_memory \
 				ft_print_memory_plus
 
@@ -167,7 +168,7 @@ announce:
 
 $(OBJ_DIR)%.o:	$(SRC_LIB_DIR)%.c # start_msg
 				@mkdir -p $(OBJ_DIR)
-				@sleep 0.01
+				@$(SLEEP)
 				@echo "$(RETURN)$(RETURN)$(YELLOW)Compiling Libft: $< $(NRM_FORMAT)"
 				@$(PRINT2)
 				@$(PRINT1)
@@ -176,7 +177,7 @@ $(OBJ_DIR)%.o:	$(SRC_LIB_DIR)%.c # start_msg
 
 $(OBJ_DIR)%.o:	$(SRC_EX_DIR)%.c
 				@mkdir -p $(OBJ_DIR)
-				@sleep 0.01
+				@$(SLEEP)
 				@echo "$(RETURN)$(RETURN)$(YELLOW)Compiling extras: $< $(NRM_FORMAT)"
 				@$(PRINT2)
 				@$(PRINT1)
@@ -185,7 +186,7 @@ $(OBJ_DIR)%.o:	$(SRC_EX_DIR)%.c
 
 $(OBJ_DIR)%.o:	$(SRC_GNL_DIR)%.c # lib_msg
 				@mkdir -p $(OBJ_DIR)
-				@sleep 0.01
+				@$(SLEEP)
 				@echo "$(RETURN)$(RETURN)$(YELLOW)Compiling get next line: $< $(NRM_FORMAT)"
 				@$(PRINT2)
 				@$(PRINT1)
@@ -194,7 +195,7 @@ $(OBJ_DIR)%.o:	$(SRC_GNL_DIR)%.c # lib_msg
 
 $(OBJ_DIR)%.o:	$(SRC_PF_DIR)%.c # gnl_msg
 				@mkdir -p $(OBJ_DIR)
-				@sleep 0.01
+				@$(SLEEP)
 				@echo "$(RETURN)$(RETURN)$(YELLOW)Compiling ft printf: $< $(NRM_FORMAT)"
 				@$(PRINT2)
 				@$(PRINT1)

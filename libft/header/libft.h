@@ -6,7 +6,7 @@
 /*   By: okraus <okraus@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 13:43:29 by okraus            #+#    #+#             */
-/*   Updated: 2023/03/14 15:11:41 by okraus           ###   ########.fr       */
+/*   Updated: 2023/03/14 16:43:53 by okraus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,9 @@ void	ft_dlstmovein(t_dlist **dlst_dst, t_dlist *dlst_src);
 void	ft_dlstmoveout(t_dlist **dlst_src);
 void	ft_dlstmoveone(t_dlist **dlst_dst, t_dlist **dlst_src);
 t_dlist	*ft_dlstnew(void *content);
+
+//free split
+void	ft_free_split(char **split);
 
 // memory
 void	*ft_print_memory(void *addr, int fd, unsigned int size);

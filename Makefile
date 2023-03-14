@@ -6,7 +6,7 @@
 #    By: okraus <okraus@student.42prague.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/04 15:40:17 by okraus            #+#    #+#              #
-#    Updated: 2023/03/14 15:11:25 by okraus           ###   ########.fr        #
+#    Updated: 2023/03/14 16:24:57 by okraus           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ LIBFT		=	libft.a
 CC 			=	cc
 CFLAGS		=	-Wall -Wextra -Werror -O3
 OBJ_DIR		=	objects/
-#NUM_COM		:=	make -n | wc -l
+SLEEP		=	#sleep 0.5
 
 # SOURCES
 
@@ -42,12 +42,12 @@ SRC_CH_DIR	=	src_ch/
 # Push swap functions
 
 SRC_PS		=	ft_bruteforce \
+				ft_errors \
 				ft_five_generator \
 				ft_index_array \
 				ft_initialize_stack_a \
 				ft_stack_manipulation \
-				push_swap \
-				temp
+				push_swap
 
 # Checker functions
 
@@ -103,7 +103,7 @@ announce:
 
 $(OBJ_DIR)%.o:	$(SRC_PS_DIR)%.c
 				@mkdir -p $(OBJ_DIR)
-				@sleep 0.01
+				@$(SLEEP)
 				@echo "$(RETURN)$(RETURN)$(YELLOW)Compiling PUSH_SWAP: $< $(NRM_FORMAT)"
 				@$(PRINT2)
 				@$(PRINT1)
@@ -112,7 +112,7 @@ $(OBJ_DIR)%.o:	$(SRC_PS_DIR)%.c
 
 #$(OBJ_DIR)%.o:	$(SRC_CH_DIR)%.c
 #				@mkdir -p $(OBJ_DIR)
-#				@sleep 0.01
+#				@$(SLEEP)
 #				@echo "$(RETURN)$(RETURN)$(YELLOW)Compiling CHCKER: $< $(NRM_FORMAT)"
 #				@$(PRINT2)
 #				@$(PRINT1)
