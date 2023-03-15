@@ -6,7 +6,7 @@
 /*   By: okraus <okraus@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 15:43:08 by okraus            #+#    #+#             */
-/*   Updated: 2023/03/14 15:11:36 by okraus           ###   ########.fr       */
+/*   Updated: 2023/03/15 11:20:19 by okraus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,5 +72,10 @@ void	ft_ps_rrr(t_dlist **a, t_dlist **b, t_ps_info *info);
 
 // solving
 int		ft_ps_bruteforce(t_ps_info *info);
+
+//errors
+void	ft_print_error(void);
+int		ft_check_error_duplicates(int *arr_o, int size);
+int		ft_check_error(char **nums, int size);
 
 #endif
