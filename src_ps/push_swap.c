@@ -6,7 +6,7 @@
 /*   By: okraus <okraus@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 15:42:22 by okraus            #+#    #+#             */
-/*   Updated: 2023/03/15 11:29:55 by okraus           ###   ########.fr       */
+/*   Updated: 2023/03/15 12:05:24 by okraus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ int	push_swap_3(int *arr_o, int size)
 
 	if (ft_check_error_duplicates(arr_o, size))
 		return (1);
+	if (size < 2)
+		return (0);
 	arr_i = ft_calloc (sizeof(int), size);
 	ft_index_array(&arr_o, &arr_i, size);
 	push_swap_4(arr_i, size);
