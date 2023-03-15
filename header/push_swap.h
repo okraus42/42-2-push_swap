@@ -6,7 +6,7 @@
 /*   By: okraus <okraus@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 15:43:08 by okraus            #+#    #+#             */
-/*   Updated: 2023/03/15 13:20:22 by okraus           ###   ########.fr       */
+/*   Updated: 2023/03/15 15:50:30 by okraus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ void	ft_ps_rrb(t_dlist **b, t_ps_info *info);
 void	ft_ps_rrr(t_dlist **a, t_dlist **b, t_ps_info *info);
 
 // solving
+void	ft_ps_pushb(int *arr_s, t_ps_info *info, int size);
 int		ft_ps_bruteforce(t_ps_info *info);
 
 //errors

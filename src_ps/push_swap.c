@@ -6,16 +6,14 @@
 /*   By: okraus <okraus@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 15:42:22 by okraus            #+#    #+#             */
-/*   Updated: 2023/03/15 13:30:00 by okraus           ###   ########.fr       */
+/*   Updated: 2023/03/15 16:02:33 by okraus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/push_swap.h"
 
-//rename i to size?
-
 //convert array of indexes into double linked list
-void	push_swap_4(int *arr_i, int size)
+void	push_swap_4(int *arr_i, int *arr_s, int size)
 {
 	t_ps_info	inf;
 	t_ps_info	*info;
@@ -25,8 +23,12 @@ void	push_swap_4(int *arr_i, int size)
 	info->a_start = NULL;
 	info->b_size = 0;
 	info->b_start = NULL;
+	ft_printf("haha1\n");
 	ft_initialize_stack_a(arr_i, info);
 	//SOLVE FUNCTION
+	ft_printf("haha2\n");
+	ft_ps_pushb(arr_s, info, size);
+	ft_printf("haha3\n");
 	ft_ps_bruteforce(info);
 
 	if (info->a_start)
@@ -49,7 +51,7 @@ int	push_swap_3(int *arr_o, int size)
 	arr_s = ft_calloc (sizeof(int), size);
 	ft_index_array(&arr_o, &arr_i, size);
 	ft_index_stack(&arr_s, size);
-	push_swap_4(arr_i, size);
+	push_swap_4(arr_i, arr_s, size);
 	free(arr_i);
 	return (0);
 }
