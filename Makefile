@@ -6,7 +6,7 @@
 #    By: okraus <okraus@student.42prague.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/04 15:40:17 by okraus            #+#    #+#              #
-#    Updated: 2023/03/15 15:51:18 by okraus           ###   ########.fr        #
+#    Updated: 2023/03/16 16:15:29 by okraus           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,7 @@ SRC_CH_DIR	=	src_ch/
 # Push swap functions
 
 SRC_PS		=	ft_bruteforce \
+				ft_pusha \
 				ft_pushb \
 				ft_errors \
 				ft_five_generator \
