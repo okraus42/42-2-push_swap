@@ -6,7 +6,7 @@
 /*   By: okraus <okraus@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 15:42:22 by okraus            #+#    #+#             */
-/*   Updated: 2023/03/16 16:11:36 by okraus           ###   ########.fr       */
+/*   Updated: 2023/03/17 17:15:16 by okraus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,10 @@ void	push_swap_4(int *arr_i, int *arr_s, int size)
 	ft_ps_pushb(arr_s, info, size);
 	//ft_printf("haha3\n");
 	ft_ps_bruteforce(info);
-	arr_x = NULL;
-	ft_create_arrx(&arr_x, size);
-	ft_ps_pusha(arr_x, info, size);
+	arr_x = malloc(sizeof(int *) * 8);
+	ft_create_arrx(arr_x, size);
+	//ft_printf("arrx = %p\n", arr_x);
+	ft_ps_pusha(&arr_x, info, size);
 	ft_free_arrx(&arr_x);
 	if (info->a_start)
 		ft_dlstclear2(&info->a_start);

@@ -6,29 +6,30 @@
 /*   By: okraus <okraus@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 17:28:42 by okraus            #+#    #+#             */
-/*   Updated: 2023/03/16 17:42:14 by okraus           ###   ########.fr       */
+/*   Updated: 2023/03/17 17:16:16 by okraus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/push_swap.h"
 
-void	ft_create_arrx(int ***arr_x, int size)
+void	ft_create_arrx(int **ax, int size)
 {
-	int	**ax;
 	int	i;
 
 	i = 0;
-	ax = *arr_x;
-	ax = malloc(sizeof(int *) * 8);
+	/*ax = malloc(sizeof(int *) * 8);
 	if(!ax)
-		return ;
+		ax = NULL;*/
+	//ft_printf("wild = %p\n", ax);
 	while (i < 8)
 	{
+		//ft_printf("wild%i%i", i, size);
 		ax[i] = ft_calloc(sizeof(int), size);
+		//ft_printf("ax[i][0] = %i\n", ax[i][size - 1]);
 		if(!ax[i])
-			return ;
+			ax[i] = NULL;
 		i++;
-	}	
+	}
 }
 
 void	ft_free_arrx(int ***arr_x)

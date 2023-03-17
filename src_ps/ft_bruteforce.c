@@ -6,7 +6,7 @@
 /*   By: okraus <okraus@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 15:15:09 by okraus            #+#    #+#             */
-/*   Updated: 2023/03/16 15:44:51 by okraus           ###   ########.fr       */
+/*   Updated: 2023/03/17 17:57:12 by okraus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -226,17 +226,17 @@ int	ft_ps_bruteforce(t_ps_info *info)
 {
 	t_ps_info	*info_t;
 	t_ps_info	inf2;
-	t_dlist		*tmp;	//remove later
-	t_dlist		*tmp2;	//remove later
+	//t_dlist		*tmp;	//remove later
+	//t_dlist		*tmp2;	//remove later
 	int			i;
 
 	info_t = &inf2;
 	ft_copyinfo(info, info_t);
 	i = ft_ps_bf2(info, info_t);
-	ft_printf("%7CBRUTE FORCE == %i%0C\n", i);
+	//ft_printf("%7CBRUTE FORCE == %i%0C\n", i);
 	ft_ps_putop(i);
 	ft_ps_bfdo(info, i);
-	tmp = info->a_start;
+	/*tmp = info->a_start;
 	tmp2 = info->b_start;
 	i = 0;
 	if (info->a_size || info->b_size)
@@ -257,7 +257,7 @@ int	ft_ps_bruteforce(t_ps_info *info)
 				tmp2 = tmp2->next;
 			i++;
 		}
-	}
+	}*/
 
 	return (i);
 }
