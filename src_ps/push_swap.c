@@ -6,7 +6,7 @@
 /*   By: okraus <okraus@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 15:42:22 by okraus            #+#    #+#             */
-/*   Updated: 2023/03/17 17:15:16 by okraus           ###   ########.fr       */
+/*   Updated: 2023/03/17 18:50:57 by okraus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ int	push_swap_3(int *arr_o, int size)
 	ft_index_stack(&arr_s, size);
 	push_swap_4(arr_i, arr_s, size);
 	free(arr_i);
+	free(arr_s);
 	return (0);
 }
 
