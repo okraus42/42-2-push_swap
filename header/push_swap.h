@@ -6,7 +6,7 @@
 /*   By: okraus <okraus@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 15:43:08 by okraus            #+#    #+#             */
-/*   Updated: 2023/03/17 16:43:53 by okraus           ###   ########.fr       */
+/*   Updated: 2023/03/19 15:39:50 by okraus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,15 +73,27 @@ void	ft_ps_rrr(t_dlist **a, t_dlist **b, t_ps_info *info);
 
 // solving
 void	ft_ps_pushb(int *arr_s, t_ps_info *info, int size);
-int		ft_ps_bruteforce(t_ps_info *info);
 void	ft_ps_pusha(int ***arr_x, t_ps_info *info, int size);
+void	ft_ps_dosmartpusha(int ***arr_x, t_ps_info *info, int i);
+void	ft_ps_prefill_ax(int ***arr_x, t_ps_info *info, int size);
 
-//errors
+// solving utils
+int		ft_ps_findhigher(int ***arr_x, int i);
+int		ft_ps_findmin(int ***arr_x, int i);
+
+// bruteforce
+int		ft_ps_bruteforce(t_ps_info *info);
+void	ft_ps_copyinfo(t_ps_info *info, t_ps_info *info_t);
+void	ft_ps_cpb(t_ps_info *inf, t_ps_info *it);
+void	ft_ps_cpa(t_ps_info *inf, t_ps_info *it);
+void	ft_ps_putop(int i);
+
+// errors
 void	ft_print_error(void);
 int		ft_check_error_duplicates(int *arr_o, int size);
 int		ft_check_error(char **nums, int size);
 
-//stuff
+// stuff
 void	ft_free_arrx(int ***arr_x);
 void	ft_create_arrx(int **ax, int size);
 

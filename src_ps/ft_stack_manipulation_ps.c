@@ -1,42 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_stack_manipulation.c                            :+:      :+:    :+:   */
+/*   ft_stack_manipulation_ps.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: okraus <okraus@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 08:35:25 by okraus            #+#    #+#             */
-/*   Updated: 2023/03/14 15:11:03 by okraus           ###   ########.fr       */
+/*   Updated: 2023/03/19 15:04:06 by okraus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/push_swap.h"
-
-/*t_dlist	*tmp;
-	int		j;
-
-	ft_printf("a_size = %i\n", info->a_size);
-	tmp = info->a_start;
-	j = 0;
-	tmp2 = info->b_start;
-	if (info->a_size || info->b_size)
-	{
-		while (tmp && j < info->a_size)
-		{
-			ft_printf("%1CstackA2:%3i, num %3i|%p|%p|%p\n%0C", j, *(int *)tmp->content, tmp->prev, tmp, tmp->next);
-			if (tmp->next)
-				tmp = tmp->next;
-			j++;
-		}
-		j = 0;
-		while (tmp2 && j < info->b_size)
-		{
-			ft_printf("%2CstackB2:%3i, num %3i|%p|%p|%p\n%0C", j, *(int *)tmp2->content, tmp2->prev, tmp2, tmp2->next);
-			if (tmp2->next)
-				tmp2 = tmp2->next;
-			j++;
-		}
-	}*/
 
 void	ft_ps_sa(t_dlist **a, t_ps_info *info)
 {
@@ -44,7 +18,7 @@ void	ft_ps_sa(t_dlist **a, t_ps_info *info)
 	t_dlist	*tmp2;
 	t_dlist	*tmp3;
 	t_dlist	*tmp4;
-	
+
 	if (info->a_size > 1)
 	{
 		tmp2 = *a;
@@ -146,64 +120,4 @@ void	ft_ps_pb(t_dlist **a, t_dlist **b, t_ps_info *info)
 		info->a_size -= 1;
 		info->b_size += 1;
 	}
-}
-
-void	ft_ps_ra(t_dlist **a, t_ps_info *info)
-{
-	t_dlist	*tmp;
-
-	if (info->a_size > 1)
-	{
-		tmp = *a;
-		tmp = tmp->next;
-		info->a_start = tmp;
-	}
-}
-
-void	ft_ps_rb(t_dlist **b, t_ps_info *info)
-{
-	t_dlist	*tmp;
-
-	if (info->b_size > 1)
-	{
-		tmp = *b;
-		tmp = tmp->next;
-		info->b_start = tmp;
-	}
-}
-
-void	ft_ps_rr(t_dlist **a, t_dlist **b, t_ps_info *info)
-{
-	ft_ps_ra(a, info);
-	ft_ps_rb(b, info);
-}
-
-void	ft_ps_rra(t_dlist **a, t_ps_info *info)
-{
-	t_dlist	*tmp;
-
-	if (info->a_size > 1)
-	{
-		tmp = *a;
-		tmp = tmp->prev;
-		info->a_start = tmp;
-	}
-}
-
-void	ft_ps_rrb(t_dlist **b, t_ps_info *info)
-{
-	t_dlist	*tmp;
-
-	if (info->b_size > 1)
-	{
-		tmp = *b;
-		tmp = tmp->prev;
-		info->b_start = tmp;
-	}
-}
-
-void	ft_ps_rrr(t_dlist **a, t_dlist **b, t_ps_info *info)
-{
-	ft_ps_rra(a, info);
-	ft_ps_rrb(b, info);
 }

@@ -6,7 +6,7 @@
 /*   By: okraus <okraus@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 13:43:29 by okraus            #+#    #+#             */
-/*   Updated: 2023/03/15 11:43:13 by okraus           ###   ########.fr       */
+/*   Updated: 2023/03/19 15:44:06 by okraus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,10 @@
 # endif
 
 // FT_PRINTF definitions
+# define F_TYPS 	"cspdiuxXBPC%"
+# define F_FLGS 	"0#-+. "
+# define BASE_CAP	"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+# define BASE_SML	"0123456789abcdefghijklmnopqrstuvwxyz"
 
 // STRUCTURES
 // LIBFT structure
@@ -132,6 +136,11 @@ void		*ft_evil_malloc(size_t size);
 void		*ft_evil_malloc_plus(size_t size, size_t padding);
 void		*ft_evil_calloc(size_t nmemb, size_t size);
 void		*ft_evil_calloc_plus(size_t nmemb, size_t size, size_t padding);
+
+// math stuff
+int			ft_abs(int n);
+int			ft_max(int a, int b);
+int			ft_min(int a, int b);
 
 // long long atoi & itoa
 long long	ft_latoi(const char *nptr);

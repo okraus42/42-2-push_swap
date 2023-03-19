@@ -6,7 +6,7 @@
 /*   By: okraus <okraus@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 17:28:42 by okraus            #+#    #+#             */
-/*   Updated: 2023/03/17 17:16:16 by okraus           ###   ########.fr       */
+/*   Updated: 2023/03/19 14:14:14 by okraus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,10 @@ void	ft_create_arrx(int **ax, int size)
 	int	i;
 
 	i = 0;
-	/*ax = malloc(sizeof(int *) * 8);
-	if(!ax)
-		ax = NULL;*/
-	//ft_printf("wild = %p\n", ax);
 	while (i < 8)
 	{
-		//ft_printf("wild%i%i", i, size);
 		ax[i] = ft_calloc(sizeof(int), size);
-		//ft_printf("ax[i][0] = %i\n", ax[i][size - 1]);
-		if(!ax[i])
+		if (!ax[i])
 			ax[i] = NULL;
 		i++;
 	}
@@ -72,15 +66,14 @@ void	ft_index_stack(int **array, int size)
 	arr = *array;
 	while (a.i < size)
 	{	
-		if(a.i == a.tmp)
+		if (a.i == a.tmp)
 		{
 			a.tmp += size / (5 + a.min / 2);
 			a.min++;
 		}
 		arr[a.i] = a.min;
-		if(a.i > size - 6)
+		if (a.i > size - 6)
 			arr[a.i] = 0x7FFFFFFF;
-		//ft_printf("arr[%i] = %i| a.tmp = %i, a.min =%i\n", a.i, arr[a.i], a.tmp, a.min);
 		a.i++;
 	}
 }

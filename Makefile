@@ -6,7 +6,7 @@
 #    By: okraus <okraus@student.42prague.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/04 15:40:17 by okraus            #+#    #+#              #
-#    Updated: 2023/03/16 16:15:29 by okraus           ###   ########.fr        #
+#    Updated: 2023/03/19 15:46:23 by okraus           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,13 +42,19 @@ SRC_CH_DIR	=	src_ch/
 # Push swap functions
 
 SRC_PS		=	ft_bruteforce \
+				ft_bruteforce2 \
 				ft_pusha \
+				ft_pusha_prefill \
+				ft_pusha_smart \
+				ft_pusha_utils \
 				ft_pushb \
 				ft_errors \
 				ft_five_generator \
 				ft_index_array \
 				ft_initialize_stack_a \
-				ft_stack_manipulation \
+				ft_stack_manipulation_ps \
+				ft_stack_manipulation_rx \
+				ft_stack_manipulation_rrx \
 				push_swap
 
 # Checker functions

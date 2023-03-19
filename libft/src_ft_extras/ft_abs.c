@@ -1,24 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mainlitoa.c                                        :+:      :+:    :+:   */
+/*   ft_abs.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: okraus <okraus@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/15 11:36:11 by okraus            #+#    #+#             */
-/*   Updated: 2023/03/15 11:36:15 by okraus           ###   ########.fr       */
+/*   Created: 2023/03/19 15:42:56 by okraus            #+#    #+#             */
+/*   Updated: 2023/03/19 15:44:01 by okraus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/libft.h"
 
-int	main(void)
+int	ft_abs(int n)
 {
-	long long	l;
-	char		*str;
-
-	l = -123456789012345;
-	str = ft_litoa(l);
-	ft_printf("s = %s\n", str);
-	return (0);
+	if (n < 0)
+		return (-n);
+	else
+		return (n);
 }

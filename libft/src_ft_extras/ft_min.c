@@ -1,37 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   write_tester.c                                     :+:      :+:    :+:   */
+/*   ft_min.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: okraus <okraus@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/22 12:57:42 by okraus            #+#    #+#             */
-/*   Updated: 2023/03/14 15:11:50 by okraus           ###   ########.fr       */
+/*   Created: 2023/03/19 15:43:10 by okraus            #+#    #+#             */
+/*   Updated: 2023/03/19 15:43:35 by okraus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include "../header/libft.h"
 
-int	main(void)
+int	ft_min(int a, int b)
 {
-	int		n;
-	char	s[17];
-
-	n = 0;
-	while (n < 10)
-	{
-		s[n] = n + '0';
-		n++;
-	}
-	while (n <= 17)
-	{
-		s[n] = n + 'a' - 10;
-		n++;
-	}
-	s[n] = 0;
-	n = 16;
-	write(1, &s[n % 16], 1);
-	write(1, "\n", 1);
-	write(1, &"01234567890abcdef", 1);
-	write(1, "\n", 1);
+	if (a < b)
+		return (a);
+	else
+		return (b);
 }

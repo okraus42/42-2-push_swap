@@ -6,23 +6,15 @@
 /*   By: okraus <okraus@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 13:49:23 by okraus            #+#    #+#             */
-/*   Updated: 2023/03/14 16:44:19 by okraus           ###   ########.fr       */
+/*   Updated: 2023/03/19 14:53:57 by okraus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/libft.h"
 
-void	ft_putstuff(va_list arg, const char *s, int *q, t_output *t)
+void	ft_putstuff2(va_list arg, const char *s, int *q, t_output *t)
 {
-	ft_prefill_struct(t, &s[q[0]]);
-	while (s[q[0]] != 'c' && s[q[0]] != 's' && s[q[0]] != 'p' && s[q[0]] != 'd'
-		&& s[q[0]] != 'i' && s[q[0]] != 'u' && s[q[0]] != 'x' && s[q[0]] != 'X'
-		&& s[q[0]] != 'B' && s[q[0]] != 'C' && s[q[0]] != 'P' && s[q[0]] != '%'
-		&& s[q[0]] != '\0')
-		q[0]++;
-	if (s[q[0]] == '%')
-		q[1] += write(q[2], &s[q[0]], 1);
-	else if (s[q[0]] == 'p')
+	if (s[q[0]] == 'p')
 		q[1] += ft_putpointer_fd(va_arg(arg, void *), q[2], t);
 	else if (s[q[0]] == 'u')
 		q[1] += ft_putunsigned_fd(va_arg(arg, unsigned int), q[2], t);
@@ -42,6 +34,16 @@ void	ft_putstuff(va_list arg, const char *s, int *q, t_output *t)
 		q[1] += ft_putbinocthex_fd(va_arg(arg, void *), q[2], t);
 	else if (s[q[0]] == 'C')
 		q[1] += ft_putcolour_fd(q[2], t);
+}
+
+void	ft_putstuff(va_list arg, const char *s, int *q, t_output *t)
+{
+	ft_prefill_struct(t, &s[q[0]]);
+	while (s[q[0]] && !ft_strchr(F_TYPS, s[q[0]]))
+		q[0]++;
+	if (s[q[0]] == '%')
+		q[1] += write(q[2], &s[q[0]], 1);
+	ft_putstuff2(arg, s, q, t);
 	q[0]++;
 }
 
