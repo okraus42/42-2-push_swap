@@ -6,7 +6,7 @@
 /*   By: okraus <okraus@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 15:43:08 by okraus            #+#    #+#             */
-/*   Updated: 2023/03/19 15:39:50 by okraus           ###   ########.fr       */
+/*   Updated: 2023/03/20 17:07:08 by okraus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,11 @@ int		ft_check_error_duplicates(int *arr_o, int size);
 int		ft_check_error(char **nums, int size);
 
 // stuff
+int		ft_ps_sortcheck(int *arr_i, int size);
 void	ft_free_arrx(int ***arr_x);
 void	ft_create_arrx(int **ax, int size);
+
+// checker
+void	ft_ch_gnl(t_ps_info *info);
 
 #endif

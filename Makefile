@@ -6,7 +6,7 @@
 #    By: okraus <okraus@student.42prague.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/04 15:40:17 by okraus            #+#    #+#              #
-#    Updated: 2023/03/19 15:46:23 by okraus           ###   ########.fr        #
+#    Updated: 2023/03/21 15:19:02 by okraus           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ ECHO		=	echo "[`expr ${HIT_COUNT1} '*' 100 / ${HIT_TOTAL}`%]"
 endif
 
 NAME		=	push_swap
-#NAME_B		=	checker
+NAME_B		=	checker
 LIBFT_F		=	libft/
 LIBFT		=	libft.a
 CC 			=	cc
@@ -31,8 +31,7 @@ SLEEP		=	#sleep 0.5
 # SOURCES
 
 SRC			=	$(addprefix $(SRC_PS_DIR), $(addsuffix .c, $(SRC_PS)))
-
-#SRC_B		=	$(addprefix $(SRC_CH_DIR), $(addsuffix .c, $(SRC_CH)))
+SRC_B		=	$(addprefix $(SRC_CH_DIR), $(addsuffix .c, $(SRC_CH)))
 
 # Source directories
 
@@ -52,6 +51,7 @@ SRC_PS		=	ft_bruteforce \
 				ft_five_generator \
 				ft_index_array \
 				ft_initialize_stack_a \
+				ft_ps_sortcheck \
 				ft_stack_manipulation_ps \
 				ft_stack_manipulation_rx \
 				ft_stack_manipulation_rrx \
@@ -59,7 +59,15 @@ SRC_PS		=	ft_bruteforce \
 
 # Checker functions
 
-SRC_CH		=	
+SRC_CH		=	checker \
+				ft_ch_gnl \
+				ft_errors \
+				ft_index_array \
+				ft_initialize_stack_a \
+				ft_ps_sortcheck \
+				ft_stack_manipulation_ps \
+				ft_stack_manipulation_rx \
+				ft_stack_manipulation_rrx
 
 # Formating
 
@@ -69,7 +77,7 @@ GREEN		=	\033[1;32m
 YELLOW		=	\033[1;93m
 RED			=	\033[1;31m
 REVERSE		=	\033[7m
-RETURN		=	\033[1F\r\033[2K
+RETURN		=	#\033[1F\r\033[2K
 
 # Printing
 
@@ -87,19 +95,22 @@ PRINT2		=	for num in `seq 1 $(BAR_LENGTH)` ; do \
 
 OBJ			=	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_PS)))
 
-OBJ_B		=	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_CG))) 
+OBJ_B		=	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_CH))) 
 
 # RULES
 
 all:			announce $(LIBFT) $(NAME)
-
 				@$(PRINT2)
 				@$(PRINT1)
 				@$(ECHO)
 				@echo "$(GREEN)Amazing <<$(REVERSE)push_swap$(NRM_FORMAT)$(GREEN)>> compiled!$(NRM_FORMAT)"
 				
 
-#bonus:
+bonus:			$(LIBFT) $(NAME_B)
+				@$(PRINT2)
+				@$(PRINT1)
+				@$(ECHO)
+				@echo "$(GREEN)Amazing <<$(REVERSE)checker$(NRM_FORMAT)$(GREEN)>> compiled!$(NRM_FORMAT)"
 
 # MESSAGES 
 
@@ -118,14 +129,14 @@ $(OBJ_DIR)%.o:	$(SRC_PS_DIR)%.c
 				@$(CC) $(CFLAGS) -c $< -o $@
 				@$(ECHO)
 
-#$(OBJ_DIR)%.o:	$(SRC_CH_DIR)%.c
-#				@mkdir -p $(OBJ_DIR)
-#				@$(SLEEP)
-#				@echo "$(RETURN)$(RETURN)$(YELLOW)Compiling CHCKER: $< $(NRM_FORMAT)"
-#				@$(PRINT2)
-#				@$(PRINT1)
-#				@$(CC) $(CFLAGS) -c $< -o $@
-#				@$(ECHO)
+$(OBJ_DIR)%.o:	$(SRC_CH_DIR)%.c
+				@mkdir -p $(OBJ_DIR)
+				@$(SLEEP)
+				@echo "$(RETURN)$(RETURN)$(YELLOW)Compiling CHCKER: $< $(NRM_FORMAT)"
+				@$(PRINT2)
+				@$(PRINT1)
+				@$(CC) $(CFLAGS) -c $< -o $@
+				@$(ECHO)
 
 $(NAME): 		$(OBJ)
 				@echo "$(RETURN)$(RETURN)$(GREEN)Libft compilation complete!$(NRM_FORMAT)"
@@ -134,6 +145,14 @@ $(NAME): 		$(OBJ)
 				@$(PRINT1)
 				@$(ECHO)
 				@echo "$(RETURN)$(RETURN)$(GREEN)Push swap compiled!$(NRM_FORMAT)"
+
+$(NAME_B): 		$(OBJ_B)
+				@echo "$(RETURN)$(RETURN)$(GREEN)Libft compilation complete!$(NRM_FORMAT)"
+				@$(CC) $(CFLAGS) $(SRC_B) libft.a -o $(NAME_B)
+				@$(PRINT2)
+				@$(PRINT1)
+				@$(ECHO)
+				@echo "$(RETURN)$(RETURN)$(GREEN)Checker compiled!$(NRM_FORMAT)"
 
 $(LIBFT):
 				@echo "$(RETURN)$(RETURN)$(YELLOW)Compiling LIBFT: $< $(NRM_FORMAT)"
@@ -159,7 +178,7 @@ clean:
 fclean:			clean
 				@rm $(LIBFT)
 				@rm $(NAME)
-#				@rm $(NAME_B)
+				@rm $(NAME_B)
 				@echo "$(RETURN)$(RED)Library and program deleted!$(NRM_FORMAT)"
 				@$(PRINT2)
 				@$(PRINT1)

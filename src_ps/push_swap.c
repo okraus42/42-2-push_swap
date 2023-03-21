@@ -6,14 +6,14 @@
 /*   By: okraus <okraus@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 15:42:22 by okraus            #+#    #+#             */
-/*   Updated: 2023/03/19 13:59:42 by okraus           ###   ########.fr       */
+/*   Updated: 2023/03/20 17:03:49 by okraus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/push_swap.h"
 
 //convert array of indexes into double linked list
-void	push_swap_4(int *arr_i, int *arr_s, int size)
+static void	push_swap_4(int *arr_i, int *arr_s, int size)
 {
 	t_ps_info	inf;
 	t_ps_info	*info;
@@ -38,7 +38,7 @@ void	push_swap_4(int *arr_i, int *arr_s, int size)
 }
 
 //convert array of original integers into array of indexes
-int	push_swap_3(int *arr_o, int size)
+static int	push_swap_3(int *arr_o, int size)
 {
 	int		*arr_i;
 	int		*arr_s;
@@ -51,14 +51,15 @@ int	push_swap_3(int *arr_o, int size)
 	arr_s = ft_calloc (sizeof(int), size);
 	ft_index_array(&arr_o, &arr_i, size);
 	ft_index_stack(&arr_s, size);
-	push_swap_4(arr_i, arr_s, size);
+	if (ft_ps_sortcheck(arr_i, size))
+		push_swap_4(arr_i, arr_s, size);
 	free(arr_i);
 	free(arr_s);
 	return (0);
 }
 
 //get array of strings from long string and convert them into array of integers
-int	push_swap_2(char *str)
+static int	push_swap_2(char *str)
 {
 	char	**nums;
 	int		size;
@@ -85,7 +86,7 @@ int	push_swap_2(char *str)
 }
 
 //convert arguments into array of integers
-int	push_swap_1(int argc, char *argv[])
+static int	push_swap_1(int argc, char *argv[])
 {
 	int		size;
 	int		j;
