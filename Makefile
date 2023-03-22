@@ -6,7 +6,7 @@
 #    By: okraus <okraus@student.42prague.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/04 15:40:17 by okraus            #+#    #+#              #
-#    Updated: 2023/03/21 17:10:21 by okraus           ###   ########.fr        #
+#    Updated: 2023/03/22 14:03:44 by okraus           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,7 +64,6 @@ SRC_CH		=	checker \
 				ft_errors \
 				ft_index_array \
 				ft_initialize_stack_a \
-				ft_ps_sortcheck \
 				ft_stack_manipulation_ps \
 				ft_stack_manipulation_rx \
 				ft_stack_manipulation_rrx

@@ -6,7 +6,7 @@
 /*   By: okraus <okraus@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 15:42:20 by okraus            #+#    #+#             */
-/*   Updated: 2023/03/21 15:22:34 by okraus           ###   ########.fr       */
+/*   Updated: 2023/03/22 14:03:16 by okraus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,9 @@ static int	push_swap_3(int *arr_o, int size)
 
 	if (ft_check_error_duplicates(arr_o, size))
 		return (1);
-	if (size < 2)
-		return (0);
 	arr_i = ft_calloc (sizeof(int), size);
 	ft_index_array(&arr_o, &arr_i, size);
-	if (ft_ps_sortcheck(arr_i, size))
-		push_swap_4(arr_i, size);
+	push_swap_4(arr_i, size);
 	free(arr_i);
 	return (0);
 }
@@ -61,7 +58,7 @@ static int	push_swap_2(char *str)
 	while (nums[size])
 		size++;
 	if (ft_check_error(nums, size))
-		return (1);
+		return (ft_free_split(nums), 1);
 	arr_o = ft_calloc (sizeof(int), size);
 	j = 0;
 	while (j < size)

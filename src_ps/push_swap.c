@@ -6,7 +6,7 @@
 /*   By: okraus <okraus@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 15:42:22 by okraus            #+#    #+#             */
-/*   Updated: 2023/03/20 17:03:49 by okraus           ###   ########.fr       */
+/*   Updated: 2023/03/22 13:09:55 by okraus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static int	push_swap_2(char *str)
 	while (nums[size])
 		size++;
 	if (ft_check_error(nums, size))
-		return (1);
+		return (ft_free_split(nums), 1);
 	arr_o = ft_calloc (sizeof(int), size);
 	j = 0;
 	while (j < size)
