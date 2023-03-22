@@ -6,7 +6,7 @@
 /*   By: okraus <okraus@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 15:43:08 by okraus            #+#    #+#             */
-/*   Updated: 2023/03/20 17:07:08 by okraus           ###   ########.fr       */
+/*   Updated: 2023/03/22 14:57:50 by okraus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,6 @@
 # include "../libft/header/libft.h"
 
 // DEFINITIONS
-// GET_NEXT_LINE definitions
-
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 64
-# endif
 
 // STRUCTURES
 // PUSH SWAP structure
